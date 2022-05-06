@@ -1,10 +1,10 @@
-<h2>Create an Author</h2>
+<h2>Edit "<%= @author.name %>"</h2>
 
-<%= form_tag authors_path, method: "post" do %>
+<%= form_tag author_path(@author), method: "patch" do %>
   <% if @author.errors.any? %>
     <div id="error_explanation">
       <%= pluralize(@author.errors.count, "error") %>
-      Prohibited this author from being saved:
+      Prohibited this author from being edited:
       <ul>
 
         <% @author.errors.full_messages.each do |msg| %>
@@ -12,7 +12,7 @@
             <li><%= msg %></li>
           </div>
         <% end %>
-        
+
       </ul>
     </div>
   <% end %>
@@ -22,27 +22,28 @@
   <% else %>
     <div class="field_with_errors">
   <% end %>
-      <%= label_tag "name", "Name" %>
-      <%= text_field_tag "name", @author.name %>
-    </div>
+    <%= label_tag "name", "Name" %>
+    <%= text_field_tag "name", @author.name %>
+  </div>
 
   <% if @author.errors[:email].empty? %>
     <div class="field">
   <% else %>
     <div class="field_with_errors">
   <% end %>
-      <%= label_tag "email", "Email" %>
-      <%= text_field_tag "email", @author.email %>
-    </div>
+    <%= label_tag "email", "Email" %>
+      <p>Must be "Fiction" or "Non-Fiction".</p>
+    <%= text_field_tag "email", @author.email %>
+  </div>
 
   <% if @author.errors[:phone_number].empty? %>
     <div class="field">
   <% else %>
     <div class="field_with_errors">
   <% end %>
-      <%= label_tag "phone_number", "Phone Number" %>
-      <%= text_field_tag "phone_number", @author.phone_number %>
-    </div>
+    <%= label_tag "phone_number", "Phone number" %>
+    <%= text_area_tag "phone_number", @author.phone_number %>
+  </div>
 
-  <%= submit_tag "Create" %>
+  <%= submit_tag "Update" %>
 <% end %>

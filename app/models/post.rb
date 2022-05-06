@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
     validates :title, presence: true
     validates :content, length: { minimum: 100 }
-    validates :category, inclusion: { in: %w(Fiction Non-Fiction), message: "%{value} is not a valid category" }, presence: true
+    validates :category, inclusion: { in: %w(Fiction Non-Fiction), message: "%{value} must be Fiction or Non-Fiction" }, presence: true
 end
